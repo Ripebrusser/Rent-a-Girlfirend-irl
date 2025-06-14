@@ -1,0 +1,177 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Rent-A-Girlfriend</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fff0f5;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #ff69b4;
+      color: white;
+      text-align: center;
+      padding: 1rem 0;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      padding: 2rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      padding: 1rem;
+      transition: 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      color: #ff1493;
+    }
+
+    .rent-btn, .pay-btn {
+      margin-top: 1rem;
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      padding: 0.5rem;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .rent-btn:hover, .pay-btn:hover {
+      background-color: #ff1493;
+    }
+
+    .payout-page {
+      display: none;
+      padding: 2rem;
+      max-width: 400px;
+      margin: 2rem auto;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .payout-page h2 {
+      color: #ff1493;
+    }
+
+    .payout-page label {
+      display: block;
+      margin: 0.5rem 0 0.2rem;
+    }
+
+    .payout-page input {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.8rem;
+      background-color: #ffe0eb;
+      margin-top: 2rem;
+    }
+
+    #confirmation {
+      display: none;
+      text-align: center;
+      color: green;
+      font-size: 1.2rem;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Rent-A-Girlfriend</h1>
+    <p>Choose your ideal anime-style companion</p>
+  </header>
+
+  <!-- HOME PAGE -->
+  <div class="container" id="homePage">
+    <div class="card">
+      <h3>Chizuru</h3>
+      <p>Smart, kind, and perfect for any situation.</p>
+      <button class="rent-btn" onclick="goToPayout('Chizuru')">Rent Now</button>
+    </div>
+    <div class="card">
+      <h3>Ruka</h3>
+      <p>Energetic and passionate with a bold attitude.</p>
+      <button class="rent-btn" onclick="goToPayout('Ruka')">Rent Now</button>
+    </div>
+    <div class="card">
+      <h3>Sumi</h3>
+      <p>Shy but sincere, with a heart of gold.</p>
+      <button class="rent-btn" onclick="goToPayout('Sumi')">Rent Now</button>
+    </div>
+    <div class="card">
+      <h3>Mami</h3>
+      <p>Playful and unpredictable – not for the faint-hearted.</p>
+      <button class="rent-btn" onclick="goToPayout('Mami')">Rent Now</button>
+    </div>
+  </div>
+
+  <!-- PAYOUT PAGE -->
+  <div class="payout-page" id="payoutPage">
+    <h2>Complete Your Payment</h2>
+    <p>You selected: <strong id="selectedGirl"></strong></p>
+    <label for="name">Your Name</label>
+    <input type="text" id="name" placeholder="e.g. Kazuya" required />
+
+    <label for="card">Card Number</label>
+    <input type="text" id="card" placeholder="1234 5678 9012 3456" required />
+
+    <button class="pay-btn" onclick="payNow()">Pay ₹499</button>
+    <div id="confirmation">✅ Payment successful! Your rental is confirmed.</div>
+  </div>
+
+  <footer>
+    &copy; 2025 Rent-A-Girlfriend (Fan Project) | For entertainment only.
+  </footer>
+
+  <script>
+    let selected = '';
+
+    function goToPayout(name) {
+      selected = name;
+      document.getElementById("selectedGirl").innerText = name;
+      document.getElementById("homePage").style.display = "none";
+      document.getElementById("payoutPage").style.display = "block";
+    }
+
+    function payNow() {
+      const name = document.getElementById("name").value;
+      const card = document.getElementById("card").value;
+
+      if (name.trim() === '' || card.trim() === '') {
+        alert("Please fill in all fields!");
+        return;
+      }
+
+      document.getElementById("confirmation").style.display = "block";
+    }
+  </script>
+
+</body>
+</html>
